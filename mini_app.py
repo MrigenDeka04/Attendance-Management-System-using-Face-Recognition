@@ -6,7 +6,18 @@ import os
 window = tk.Tk()
 window.title("Simple Attendance System")
 window.geometry('600x400')
-window.configure(background='lightgrey')
+window.configure(background='light grey')
+
+
+# Function to change button color on hover
+def on_enter(e):
+    e.widget['background'] = 'violet'
+    e.widget['fg'] = 'black'
+
+def on_leave(e):
+    e.widget['background'] = 'purple'
+    e.widget['fg'] = 'white'
+
 
 # Function to capture and save images
 def take_img():
@@ -35,7 +46,7 @@ def take_img():
         Notification.configure(text="Image Captured and Saved for Enrollment: " + enrollment + " Name: " + name, bg="green", fg="white")
 
 # GUI Elements
-message = tk.Label(window, text="Simple Attendance System", bg="black", fg="white", width=40, height=2, font=('times', 15, 'bold'))
+message = tk.Label(window, text="Hello, Mark Your Attendance", bg="black", fg="white", width=40, height=2, font=('times', 15, 'bold'))
 message.place(x=50, y=20)
 
 lbl = tk.Label(window, text="Enter Enrollment: ", width=20, height=2, fg="black", bg="lightgrey", font=('times', 12, 'bold'))
@@ -54,6 +65,12 @@ Notification = tk.Label(window, text="", bg="lightgrey", fg="black", width=40, h
 Notification.place(x=50, y=250)
 
 takeImg = tk.Button(window, text="Capture Images", command=take_img, fg="black", bg="lightblue", width=15, height=2, font=('times', 12, 'bold'))
-takeImg.place(x=50, y=320)
+takeImg.place(x=240, y=300)
+
+
+
+# Bind hover events
+takeImg.bind("<Enter>", on_enter)
+takeImg.bind("<Leave>", on_leave)
 
 window.mainloop()
